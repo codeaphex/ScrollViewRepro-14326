@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:ScrollViewRepro__14326.Viewmodels"
+             x:Class="ScrollViewRepro__14326.Views.SubView"
+             >
+    <ContentView.BindingContext>
+        <viewmodels:SubSettingsViewModel />
+    </ContentView.BindingContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <HorizontalStackLayout>
+            <Button Text="Hide" Command="{Binding HideControlCommand}" />
+            <Button Text="Show" Command="{Binding ShowControlCommand}" />
+        </HorizontalStackLayout>
+        
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Grid.Row="0" Margin="0,36,0,36">
+                <Label Text="{ Binding IsVisible }" HorizontalOptions="Center"/>
+
+                <Label
+                    Text="Peek-a-boo"
+                    SemanticProperties.HeadingLevel="Level1"
+                    FontSize="30"
+                    IsVisible="{ Binding IsVisible }"
+                    HorizontalOptions="Center" 
+                    />
+
+                <Rectangle HeightRequest="1200" BackgroundColor="LightBlue"/>
+                
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentView>
